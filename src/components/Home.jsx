@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Home.css';
 
 const Home = () => {
   const [nombreJugador, setNombreJugador] = useState("");
@@ -60,6 +61,18 @@ const Home = () => {
     } else {
       setMensaje("Esa no parece ser la mejor opción. Intenta de nuevo.");
     }
+  };
+
+  const handleNombreChange = (e) => {
+    setInputValue(e.target.value); // Guardar el valor del nombre en el estado inputValue
+  };
+
+  const handleNombreSubmit = (e) => {
+    e.preventDefault(); // Evitar que el formulario se envíe automáticamente
+    setJugador({ ...jugador, nombre: inputValue }); // Guardar el nombre cuando se envíe el formulario
+    setMostrarInput(false); // Ocultar el formulario después de enviar el nombre
+    setInputValue(""); // Limpiar el valor del nombre en el estado inputValue
+    obtenerRespuesta("¿Qué quieres hacer ahora?"); // Mostrar la siguiente pregunta
   };
 
   return (
