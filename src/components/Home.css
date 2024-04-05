@@ -1,34 +1,54 @@
+/* FUENTES */
+
+@font-face {
+    font-family: 'ChillPixels-Maximal';
+    src: url('../Fuentes/ChillPixels-Maximal.otf') format('opentype');
+ }
+ @font-face {
+    font-family: 'Whocats';
+    src: url('../Fuentes/Whocats.otf') format('opentype');
+  }
+  
+
+
+
 /* Home.css */
 
 body {
     background-image: url('../img/fondo5.jpg');
-    background-size: cover; /* Para cubrir todo el área del cuerpo */
-    background-repeat: no-repeat; /* Para evitar la repetición de la imagen */
-    background-position: center; /* Para centrar la imagen */
-    min-height: 100vh; /* Para asegurar que el body tenga al menos el 100% del viewport height */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 100vh;
+    position: relative; /* Añade posición relativa para poder superponer el fondo translúcido */
 }
 
+.overlay {
+    position: absolute; /* Posición absoluta para cubrir todo el cuerpo */
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 10%;
+    width: 50%;
+    height: 50%;
+    background-color: rgba(255, 255, 255, 0.199); /* Fondo translúcido con color blanco y opacidad del 50% */
+}
 
 .container {
     max-width: 600px;
     margin: auto;
     text-align: center;
-  }
+    position: relative; /* Añade posición relativa para que el z-index funcione */
+    z-index: 1; /* Coloca el contenido por encima del fondo translúcido */
+}
   
  /* Home.css */
 
- @font-face {
-    font-family: 'ChillPixels-Matrix';
-    src: url('../Fuentess/ChillPixels-Matrix.otf') format('opentype');
- }
-
  
-
-
- @font-face {
-    font-family: 'Whocats';
-    src: url('../Fuentes/Whocats.otf') format('opentype');
+#Titulo {
+    font-family: 'Whocats', sans-serif;
   }
+
+
   
   h1 {
     font-family: 'Whocats', sans-serif;
@@ -41,7 +61,7 @@ body {
   input[type="text"] {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #455b69;
     border-radius: 5px;
     margin-bottom: 10px;
   }
@@ -59,6 +79,14 @@ body {
     background-color: #0056b3;
     border-color: #0056b3;
   }
+
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active 
+{
+    font-family: 'ChillPixels-Maximal', sans-serif;
+    font-size: 30px;
+}
   
   .btn-success {
     background-color: #28a745;
