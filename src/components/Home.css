@@ -1,13 +1,37 @@
 /* Home.css */
 
+body {
+    background-image: url('../img/fondo5.jpg');
+    background-size: cover; /* Para cubrir todo el área del cuerpo */
+    background-repeat: no-repeat; /* Para evitar la repetición de la imagen */
+    background-position: center; /* Para centrar la imagen */
+    min-height: 100vh; /* Para asegurar que el body tenga al menos el 100% del viewport height */
+}
+
+
 .container {
     max-width: 600px;
     margin: auto;
     text-align: center;
   }
   
+ /* Home.css */
+
+ @font-face {
+    font-family: 'ChillPixels-Matrix';
+    src: url('../Fuentess/ChillPixels-Matrix.otf') format('opentype');
+ }
+
+ 
+
+
+ @font-face {
+    font-family: 'Whocats';
+    src: url('../Fuentes/Whocats.otf') format('opentype');
+  }
+  
   h1 {
-    color: #333;
+    font-family: 'Whocats', sans-serif;
   }
   
   p {
