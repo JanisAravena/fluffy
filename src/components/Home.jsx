@@ -63,44 +63,33 @@ const Home = () => {
     }
   };
 
-  const handleNombreChange = (e) => {
-    setInputValue(e.target.value); // Guardar el valor del nombre en el estado inputValue
-  };
-
-  const handleNombreSubmit = (e) => {
-    e.preventDefault(); // Evitar que el formulario se envíe automáticamente
-    setJugador({ ...jugador, nombre: inputValue }); // Guardar el nombre cuando se envíe el formulario
-    setMostrarInput(false); // Ocultar el formulario después de enviar el nombre
-    setInputValue(""); // Limpiar el valor del nombre en el estado inputValue
-    obtenerRespuesta("¿Qué quieres hacer ahora?"); // Mostrar la siguiente pregunta
-  };
-
   return (
-    <div>
-      <h1>¡Ayuda a Fluffy a liberarse del mal!</h1>
+    <div className="container">
+      <h1 className="mt-5">¡Ayuda a Fluffy a liberarse del mal!</h1>
       <p>{mensaje}</p>
       {etapa === "inicio" && (
-        <div>
+        <div className="mt-3">
           <input
             type="text"
             value={nombreJugador}
             onChange={(e) => setNombreJugador(e.target.value)}
+            className="form-control mb-2"
             placeholder="Escribe tu nombre"
           />
-          <button onClick={iniciarJuego}>Comenzar</button>
+          <button onClick={iniciarJuego} className="btn btn-primary">Comenzar</button>
         </div>
       )}
       {etapa === "decision" && (
-        <div>
-          <button onClick={() => tomarDecision("sí")}>Sí, quiero ayudar</button>
-          <button onClick={() => tomarDecision("no")}>No, gracias</button>
+        <div className="mt-3">
+          <button onClick={() => tomarDecision("sí")} className="btn btn-success me-2">Sí, quiero ayudar</button>
+          <button onClick={() => tomarDecision("no")} className="btn btn-danger">No, gracias</button>
         </div>
       )}
       {etapa === "niveles" && (
-        <div>
+        <div className="mt-3">
           <p>{niveles[nivel].pregunta}</p>
           {niveles[nivel].opciones.map((opcion, index) => (
-            <button key={index} onClick={() => elegirOpcion(opcion)}>
+            <button key={index} onClick={() => elegirOpcion(opcion)} className="btn btn-primary me-2 mb-2">
               {opcion}
             </button>
           ))}
