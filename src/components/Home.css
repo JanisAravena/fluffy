@@ -29,7 +29,7 @@ body {
     margin-right: 25%;
     margin-top: 10%;
     width: 50%;
-    height: 50%;
+    height: 500px;
     background-color: rgba(255, 255, 255, 0.199); /* Fondo translúcido con color blanco y opacidad del 50% */
 }
 
@@ -107,4 +107,26 @@ body {
     background-color: #c82333;
     border-color: #c82333;
   }
+
+  #opciones {
+    background-color: #007bff;
+    border-color: #007bff;
+    font-family: 'ChillPixels-Maximal', sans-serif;
+    font-size: 30px;
+  }
+
+  .btn-opcion {
+    width: auto; 
+    min-width: 300px; 
+    max-width: 300px; 
+    height: 45px; 
+    margin-bottom: 20px; 
+    border-radius: 10px; 
+  }
   
+  .btn-opcion span {
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    display: inline-block; 
+}
