@@ -18,6 +18,22 @@ body {
   position: relative;
 }
 
+.input-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Esto crea espacio entre tus elementos */
+  height: 200px; /* Ajusta esto según tus necesidades para el espaciamiento */
+}
+
+input[type="text"] {
+  margin-bottom: 20px; /* Espacio entre el campo de texto y el botón */
+}
+
+.btn-primary {
+  align-self: center; /* Centra el botón en el contenedor flex si es necesario */
+  margin-top: auto; /* Esto empujará el botón hacia abajo */
+}
+
 .overlay {
   position: absolute;
   top: 50%;
@@ -43,6 +59,25 @@ body {
   align-items: center;
 }
 
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: #007bff;
+  opacity: 1; /* Firefox */
+  font-size: 1.25rem;
+}
+
+input[type="text"] {
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 1.25rem;
+}
+
+input[type="text"]:focus {
+  outline: none; /* Remueve el contorno predeterminado */
+  box-shadow: 0 0 10px #007bff;
+}
+
+
 .BtnInicio {
   width: 100%;
   max-width: 300px;
@@ -58,11 +93,23 @@ body {
   border-color: #007bff;
   font-family: 'ChillPixels-Maximal', sans-serif;
   font-size: 30px;
+  border: none;
+  transition: transform 0.3s ease;
+  animation: pulseAnimation 2s infinite;
+  
+}
+
+
+@keyframes pulseAnimation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 
 .btn-primary:hover {
   background-color: #0056b3;
   border-color: #0056b3;
+  transform: translateY(-3px);
 }
 
 .siJuego {
@@ -110,4 +157,52 @@ body {
 
 .comenzar{
   margin-top: 10px;
+}
+
+.btn-musica {
+  position: fixed; /* or 'absolute' if the parent container is positioned */
+  right: 20px; /* Adjust as needed to move to the correct position */
+  bottom: 20px; /* Adjust as needed to move to the correct position */
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+@keyframes moveClouds {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(100%); }
+}
+
+.clouds {
+  animation: moveClouds 60s linear infinite;
+  width: 100px;
+  height: auto;
+}
+
+@keyframes waveFlag {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(5deg); }
+}
+
+.Titulo {
+  color: #0056b3;
+  text-shadow: 2px 2px 4px #000;
+  font-family: 'Whocats', cursive;
+  font-size: 3rem;
+}
+
+.clouds-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.clouds {
+  width: auto;
+  max-width: 100%;
+  animation: floatClouds 25s linear infinite;
+}
+
+@keyframes floatClouds {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }

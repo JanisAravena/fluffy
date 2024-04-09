@@ -1,39 +1,38 @@
 import React, { useState, useRef, useEffect } from 'react';
 import backgroundMusic from '../assets/audio/la-atmosfera_4.mp3';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faVolumeUp, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 import './Home.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 
 const Home = () => {
   const [nombreJugador, setNombreJugador] = useState('');
   const [etapa, setEtapa] = useState('inicio');
   const [nivel, setNivel] = useState(1);
   const [mensaje, setMensaje] = useState('');
-  
-//boton de musica
+  const [isPlaying, setIsPlaying] = useState(true);
 
-const toggleAudio = () => {
-  const audio = audioRef.current;
-  if (audio.paused) {
-    audio.play();
-  } else {
-    audio.pause();
-  }
-};
-
-
-  // Crear una referencia para la música de fondo usando useRef
   const audioRef = useRef(new Audio(backgroundMusic));
-  audioRef.current.volume = 0.1; // 0.1 para que se escuche bajito(:
-
 
   useEffect(() => {
-    // Reproducir la música de fondo al montar el componente
-    const audio = audioRef.current;
-    audio.play();
-    audio.loop = true; // Para que la música se repita continuamente
+    audioRef.current.volume = 0.9;
+    audioRef.current.play();
+    audioRef.current.loop = true;
 
-    // Función de limpieza para pausar la música cuando el componente se desmonte
-    return () => audio.pause();
+    return () => {
+      audioRef.current.pause();
+    };
   }, []);
+
+  const toggleAudio = () => {
+    setIsPlaying(!isPlaying);
+    if (audioRef.current.paused) {
+      audioRef.current.play();
+    } else {
+      audioRef.current.pause();
+    }
+  };
 
   const niveles = {
     1: {
@@ -73,51 +72,31 @@ const toggleAudio = () => {
   };
 
   return (
-    <div className="overlay">
-  <div className="container">
-    <h1 className="Titulo">¡Ayuda a Fluffy a liberarse del mal!</h1>
-    <button onClick={toggleAudio}>PROBANDO MUSICA</button>
-
-    <p>{mensaje}</p>
-    {etapa === "inicio" && (
-      <div className="mt-3">
-        <div className='si'>
-        <input         
-          className="formNombre"
-          type="text"
-          value={nombreJugador}
-          onChange={(e) => setNombreJugador(e.target.value)}
-          placeholder="Escribe tu nombre"
-        />
-        <div className='BtnInicio'>
-        <button onClick={() => { iniciarJuego(); toggleAudio(); }} className="btn btn-primary comenzar">Comenzar</button>
+    <div className="main-container">
+      <div className="overlay">
+        <div className="container">
+          <h1 className="Titulo">Fluffy programando</h1>
+          <p>{mensaje}</p>
+          {etapa === "inicio" && (
+            <div className="mt-3">
+              <input
+                className="formNombre"
+                type="text"
+                value={nombreJugador}
+                onChange={(e) => setNombreJugador(e.target.value)}
+                placeholder="Escribe tu nombre"
+              />
+              <Button variant="primary" onClick={iniciarJuego} className="comenzar">Comenzar</Button>
+            </div>
+          )}
+          {/* Aquí iría el resto de tu código según la etapa en la que se encuentre el juego */}
         </div>
       </div>
-      </div>
-    )}
-    {etapa === "decision" && (
-      <div className="mt-3">
-        <button onClick={() => tomarDecision("sí")} className="btn btn-success mb-2 siJuego">Sí, quiero ayudar</button>
-        <button onClick={() => tomarDecision("no")} className="btn btn-danger noJuego">No, gracias</button>
-      </div>
-    )}
-    {etapa === "niveles" && (
-      <div className="mt-3 text-center">
-        <p>{niveles[nivel].pregunta}</p>
-        <div className="mx-auto" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          {niveles[nivel].opciones.map((opcion, index) => (
-            <button key={index} onClick={() => elegirOpcion(opcion)} className={`btn btn-primary btn-opcion`}>
-              <span>{opcion}</span>
-            </button>
-          ))}
+      <Button onClick={toggleAudio} className="btn-musica">
+        <FontAwesomeIcon icon={isPlaying ? faVolumeUp : faVolumeMute} size="2x" />
+      </Button>
     </div>
-  </div>
-)}
-      </div>
-    </div>
-    
   );
 };
-
 
 export default Home;
