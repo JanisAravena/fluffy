@@ -65,36 +65,40 @@ const Home = () => {
 
   return (
     <div className="overlay">
-      <div className="container">
-        <h1 className="Titulo">¡Ayuda a Fluffy a liberarse del mal!</h1>
-        <p>{mensaje}</p>
-        {etapa === "inicio" && (
-          <div className="mt-3">
-            <input
-              type="text"
-              value={nombreJugador}
-              onChange={(e) => setNombreJugador(e.target.value)}
-              className="form-control mb-2"
-              placeholder="Escribe tu nombre"
-            />
-            <button onClick={iniciarJuego} className="btn btn-primary">Comenzar</button>
-          </div>
-        )}
-        {etapa === "decision" && (
-          <div className="mt-3">
-            <button onClick={() => tomarDecision("sí")} className="btn btn-success mb-2">Sí, quiero ayudar</button>
-            <button onClick={() => tomarDecision("no")} className="btn btn-danger">No, gracias</button>
-          </div>
-        )}
-       {etapa === "niveles" && (
-  <div className="mt-3 text-center">
-    <p>{niveles[nivel].pregunta}</p>
-    <div className="mx-auto" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-      {niveles[nivel].opciones.map((opcion, index) => (
-        <button key={index} onClick={() => elegirOpcion(opcion)} className={`btn btn-primary btn-opcion`}>
-          <span>{opcion}</span>
-        </button>
-      ))}
+  <div className="container">
+    <h1 className="Titulo">¡Ayuda a Fluffy a liberarse del mal!</h1>
+    <p>{mensaje}</p>
+    {etapa === "inicio" && (
+      <div className="mt-3">
+        <div className='si'>
+        <input         
+          className="formNombre"
+          type="text"
+          value={nombreJugador}
+          onChange={(e) => setNombreJugador(e.target.value)}
+          placeholder="Escribe tu nombre"
+        />
+        <div className='BtnInicio'>
+            <button onClick={iniciarJuego} className="btn btn-primary comenzar">Comenzar</button>
+        </div>
+      </div>
+      </div>
+    )}
+    {etapa === "decision" && (
+      <div className="mt-3">
+        <button onClick={() => tomarDecision("sí")} className="btn btn-success mb-2 siJuego">Sí, quiero ayudar</button>
+        <button onClick={() => tomarDecision("no")} className="btn btn-danger noJuego">No, gracias</button>
+      </div>
+    )}
+    {etapa === "niveles" && (
+      <div className="mt-3 text-center">
+        <p>{niveles[nivel].pregunta}</p>
+        <div className="mx-auto" style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+          {niveles[nivel].opciones.map((opcion, index) => (
+            <button key={index} onClick={() => elegirOpcion(opcion)} className={`btn btn-primary btn-opcion`}>
+              <span>{opcion}</span>
+            </button>
+          ))}
     </div>
   </div>
 )}
