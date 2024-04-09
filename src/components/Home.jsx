@@ -10,6 +10,8 @@ const Home = () => {
 
   // Crear una referencia para la música de fondo usando useRef
   const audioRef = useRef(new Audio(backgroundMusic));
+  audioRef.current.volume = 0.1; // 0.1 para que se escuche bajito(:
+
 
   useEffect(() => {
     // Reproducir la música de fondo al montar el componente
