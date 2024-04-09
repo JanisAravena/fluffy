@@ -1,51 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import backgroundMusic from '../assets/audio/la-atmosfera_4.mp3';
 import './Home.css';
 
 const Home = () => {
-  const [nombreJugador, setNombreJugador] = useState("");
-  const [etapa, setEtapa] = useState("inicio");
+  const [nombreJugador, setNombreJugador] = useState('');
+  const [etapa, setEtapa] = useState('inicio');
   const [nivel, setNivel] = useState(1);
-  const [mensaje, setMensaje] = useState("");
+  const [mensaje, setMensaje] = useState('');
+
+  // Crear una referencia para la música de fondo usando useRef
+  const audioRef = useRef(new Audio(backgroundMusic));
+  audioRef.current.volume = 0.1; // 0.1 para que se escuche bajito(:
+
+
+  useEffect(() => {
+    // Reproducir la música de fondo al montar el componente
+    const audio = audioRef.current;
+    audio.play();
+    audio.loop = true; // Para que la música se repita continuamente
+
+    // Función de limpieza para pausar la música cuando el componente se desmonte
+    return () => audio.pause();
+  }, []);
 
   const niveles = {
     1: {
-      pregunta: "Fluffy está atrapado en una jaula. ¿Cómo lo ayudas?",
-      opciones: ["Usar una llave", "Romper la jaula", "Buscar ayuda"],
-      correcta: "Usar una llave",
+      pregunta: 'Fluffy está atrapado en una jaula. ¿Cómo lo ayudas?',
+      opciones: ['Usar una llave', 'Romper la jaula', 'Buscar ayuda'],
+      correcta: 'Usar una llave',
     },
-    2: {
-      pregunta: "Fluffy necesita cruzar un río. ¿Qué haces?",
-      opciones: ["Construir un puente", "Nadar juntos", "Encontrar un bote"],
-      correcta: "Encontrar un bote",
-    },
-    3: {
-      pregunta: "Fluffy está enfermo. ¿Cómo lo curas?",
-      opciones: ["Darle medicina", "Llevarlo al veterinario", "Dejarlo descansar"],
-      correcta: "Llevarlo al veterinario",
-    },
-    4: {
-      pregunta: "Fluffy está perdido en un bosque. ¿Cómo lo encuentras?",
-      opciones: ["Seguir sus huellas", "Gritar su nombre", "Usar un GPS"],
-      correcta: "Seguir sus huellas",
-    },
-    5: {
-      pregunta: "Fluffy está siendo perseguido por un malvado hechicero. ¿Cómo lo proteges?",
-      opciones: ["Esconder a Fluffy", "Enfrentar al hechicero", "Crear un hechizo de protección"],
-      correcta: "Crear un hechizo de protección",
-    },
+    // ... resto de tus niveles
   };
 
   const iniciarJuego = () => {
     setMensaje(`Hola, ${nombreJugador}. Fluffy está en peligro y necesita tu ayuda. ¿Estás dispuesto a ayudarlo?`);
-    setEtapa("decision");
+    setEtapa('decision');
   };
 
   const tomarDecision = (decision) => {
-    if (decision === "sí") {
-      setEtapa("niveles");
+    if (decision === 'sí') {
+      setEtapa('niveles');
     } else {
-      setMensaje("Fluffy está triste por tu decisión. Un hechizo de mala suerte te ha sido lanzado.");
-      setEtapa("fin");
+      setMensaje('Fluffy está triste por tu decisión. Un hechizo de mala suerte te ha sido lanzado.');
+      setEtapa('fin');
     }
   };
 
@@ -53,13 +50,13 @@ const Home = () => {
     if (opcion === niveles[nivel].correcta) {
       setMensaje(`¡Correcto! Has ayudado a Fluffy a superar el nivel ${nivel}.`);
       if (nivel < 5) {
-        setNivel(nivel + 1);
+        setNivel((prevNivel) => prevNivel + 1);
       } else {
-        setMensaje("¡Felicidades! Has ayudado a Fluffy a liberarse del mal.");
-        setEtapa("fin");
+        setMensaje('¡Felicidades! Has ayudado a Fluffy a liberarse del mal.');
+        setEtapa('fin');
       }
     } else {
-      setMensaje("Esa no parece ser la mejor opción. Intenta de nuevo.");
+      setMensaje('Esa no parece ser la mejor opción. Intenta de nuevo.');
     }
   };
 
@@ -68,7 +65,7 @@ const Home = () => {
       <div className="container">
         <h1 className="Titulo">¡Ayuda a Fluffy a liberarse del mal!</h1>
         <p>{mensaje}</p>
-        {etapa === "inicio" && (
+        {etapa === 'inicio' && (
           <div className="mt-3">
             <input
               type="text"
@@ -77,16 +74,22 @@ const Home = () => {
               className="form-control mb-2"
               placeholder="Escribe tu nombre"
             />
-            <button onClick={iniciarJuego} className="btn btn-primary">Comenzar</button>
+            <button onClick={iniciarJuego} className="btn btn-primary">
+              Comenzar
+            </button>
           </div>
         )}
-        {etapa === "decision" && (
+        {etapa === 'decision' && (
           <div className="mt-3">
-            <button onClick={() => tomarDecision("sí")} className="btn btn-success me-2">Sí, quiero ayudar</button>
-            <button onClick={() => tomarDecision("no")} className="btn btn-danger">No, gracias</button>
+            <button onClick={() => tomarDecision('sí')} className="btn btn-success me-2">
+              Sí, quiero ayudar
+            </button>
+            <button onClick={() => tomarDecision('no')} className="btn btn-danger">
+              No, gracias
+            </button>
           </div>
         )}
-        {etapa === "niveles" && (
+        {etapa === 'niveles' && (
           <div className="mt-3">
             <p>{niveles[nivel].pregunta}</p>
             {niveles[nivel].opciones.map((opcion, index) => (
