@@ -7,9 +7,23 @@ const Home = () => {
   const [etapa, setEtapa] = useState('inicio');
   const [nivel, setNivel] = useState(1);
   const [mensaje, setMensaje] = useState('');
+  
 
   // Crear una referencia para la música de fondo usando useRef
   const audioRef = useRef(new Audio(backgroundMusic));
+  audioRef.current.volume = 0.1;
+
+  //probando boton para musica
+
+  const toggleAudio = () => {
+    const audio = audioRef.current;
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  };
+  
 
   useEffect(() => {
     // Reproducir la música de fondo al montar el componente
@@ -62,6 +76,8 @@ const Home = () => {
     <div className="overlay">
   <div className="container">
     <h1 className="Titulo">¡Ayuda a Fluffy a liberarse del mal!</h1>
+    <button onClick={toggleAudio}>PROBANDO MUSICA</button>
+
     <p>{mensaje}</p>
     {etapa === "inicio" && (
       <div className="mt-3">
@@ -74,7 +90,7 @@ const Home = () => {
           placeholder="Escribe tu nombre"
         />
         <div className='BtnInicio'>
-            <button onClick={iniciarJuego} className="btn btn-primary comenzar">Comenzar</button>
+        <button onClick={() => { iniciarJuego(); toggleAudio(); }} className="btn btn-primary comenzar">Comenzar</button>
         </div>
       </div>
       </div>
@@ -99,7 +115,9 @@ const Home = () => {
 )}
       </div>
     </div>
+    
   );
 };
+
 
 export default Home;
