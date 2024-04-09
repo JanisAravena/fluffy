@@ -8,6 +8,17 @@ const Home = () => {
   const [nivel, setNivel] = useState(1);
   const [mensaje, setMensaje] = useState('');
   
+//boton de musica
+
+const toggleAudio = () => {
+  const audio = audioRef.current;
+  if (audio.paused) {
+    audio.play();
+  } else {
+    audio.pause();
+  }
+};
+
 
   // Crear una referencia para la música de fondo usando useRef
   const audioRef = useRef(new Audio(backgroundMusic));
