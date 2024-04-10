@@ -29,10 +29,7 @@ input[type="text"] {
   margin-bottom: 20px; /* Espacio entre el campo de texto y el botón */
 }
 
-.btn-primary {
-  align-self: center; /* Centra el botón en el contenedor flex si es necesario */
-  margin-top: auto; /* Esto empujará el botón hacia abajo */
-}
+
 
 .overlay {
   position: absolute;
@@ -72,15 +69,19 @@ input[type="text"] {
   font-size: 1.25rem;
 }
 
+
+/* trabajar arriba */
+
+
 input[type="text"]:focus {
-  outline: none; /* Remueve el contorno predeterminado */
+  outline: none; 
   box-shadow: 0 0 10px #007bff;
 }
 
 
 .BtnInicio {
   width: 100%;
-  max-width: 300px;
+  max-width: 35px;
 }
 
 /* Estilos de los botones */
@@ -88,16 +89,20 @@ input[type="text"]:focus {
   cursor: pointer;
 }
 
-.btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+.btn-musica {
+  background-color: aqua;
   font-family: 'ChillPixels-Maximal', sans-serif;
   font-size: 30px;
   border: none;
   transition: transform 0.3s ease;
   animation: pulseAnimation 2s infinite;
+  position: fixed; 
+  right: 20px; 
+  bottom: 20px; 
+  z-index: 10; 
   
 }
+
 
 
 @keyframes pulseAnimation {
@@ -106,11 +111,6 @@ input[type="text"]:focus {
   100% { transform: scale(1); }
 }
 
-.btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
-  transform: translateY(-3px);
-}
 
 .siJuego {
   background-color: #4ab393;
@@ -155,16 +155,12 @@ input[type="text"]:focus {
   }
 }
 
-.comenzar{
-  margin-top: 10px;
+.BotonComenzar{
+  align-items: center;
+  font-family: 'ChillPixels-Maximal', cursive; 
 }
 
-.btn-musica {
-  position: fixed; /* or 'absolute' if the parent container is positioned */
-  right: 20px; /* Adjust as needed to move to the correct position */
-  bottom: 20px; /* Adjust as needed to move to the correct position */
-  z-index: 10; /* Ensure it's above other elements */
-}
+
 
 @keyframes moveClouds {
   0% { transform: translateX(0); }
@@ -183,7 +179,7 @@ input[type="text"]:focus {
 }
 
 .Titulo {
-  color: #0056b3;
+  color: #2282e9;
   text-shadow: 2px 2px 4px #000;
   font-family: 'Whocats', cursive;
   font-size: 3rem;

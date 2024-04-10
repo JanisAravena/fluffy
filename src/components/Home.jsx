@@ -86,15 +86,21 @@ const Home = () => {
                 onChange={(e) => setNombreJugador(e.target.value)}
                 placeholder="Escribe tu nombre"
               />
-              <Button variant="primary" onClick={iniciarJuego} className="comenzar">Comenzar</Button>
+                <div className='BotonComenzar'>
+                  <Button  onClick={iniciarJuego} className="btncomenzar">Comenzar</Button>
+                  </div>
+
+
             </div>
           )}
           {/* Aquí iría el resto de tu código según la etapa en la que se encuentre el juego */}
         </div>
       </div>
+      <div >
       <Button onClick={toggleAudio} className="btn-musica">
         <FontAwesomeIcon icon={isPlaying ? faVolumeUp : faVolumeMute} size="2x" />
       </Button>
+      </div>
     </div>
   );
 };
