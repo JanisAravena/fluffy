@@ -3,6 +3,7 @@
   font-family: 'ChillPixels-Maximal';
   src: url('../Fuentes/ChillPixels-Maximal.otf') format('opentype');
 }
+
 @font-face {
   font-family: 'Whocats';
   src: url('../Fuentes/Whocats.otf') format('opentype');
@@ -21,12 +22,15 @@ body {
 .input-group {
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Esto crea espacio entre tus elementos */
-  height: 200px; /* Ajusta esto según tus necesidades para el espaciamiento */
+  justify-content: space-between;
+  /* Esto crea espacio entre tus elementos */
+  height: 200px;
+  /* Ajusta esto según tus necesidades para el espaciamiento */
 }
 
 input[type="text"] {
-  margin-bottom: 20px; /* Espacio entre el campo de texto y el botón */
+  margin-bottom: 20px;
+  /* Espacio entre el campo de texto y el botón */
 }
 
 
@@ -56,26 +60,38 @@ input[type="text"] {
   align-items: center;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: #007bff;
-  opacity: 1; /* Firefox */
+  opacity: 1;
+  /* Firefox */
   font-size: 1.25rem;
 }
 
 input[type="text"] {
-  border: 2px solid #007bff;
+  border: none;
   border-radius: 5px;
   padding: 10px;
   font-size: 1.25rem;
+  color : rgb(144, 148, 150);
+  box-shadow: 0 0 6px #007bff,
+    0 0 3px #007bff,
+    0 0 4px #007bff,
+    0 0 3px #007bff;
+  font-family: 'ChillPixels-Maximal', cursive;
+  
 }
+
 
 
 /* trabajar arriba */
 
 
 input[type="text"]:focus {
-  outline: none; 
+  outline: none;
   box-shadow: 0 0 10px #007bff;
+
+
 }
 
 
@@ -96,19 +112,27 @@ input[type="text"]:focus {
   border: none;
   transition: transform 0.3s ease;
   animation: pulseAnimation 2s infinite;
-  position: fixed; 
-  right: 20px; 
-  bottom: 20px; 
-  z-index: 10; 
-  
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 10;
+
 }
 
 
 
 @keyframes pulseAnimation {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }
 
 
@@ -129,7 +153,7 @@ input[type="text"]:focus {
 
 .noJuego:hover {
   background-color: #35838d;
-  
+
 }
 
 .btn-opcion {
@@ -151,20 +175,52 @@ input[type="text"]:focus {
 /* Media queries para ajustar el diseño en diferentes tamaños de pantalla */
 @media screen and (max-width: 768px) {
   .overlay {
-      width: 90%;
+    width: 90%;
   }
 }
 
-.BotonComenzar{
-  align-items: center;
-  font-family: 'ChillPixels-Maximal', cursive; 
+
+/* DISEÑO BOTON COMENZAR INICIO  */
+.BotonComenzar > button {
+  font-family: 'ChillPixels-Maximal', cursive;
+  color: white; 
+  background-color: rgb(41, 71, 88); 
+  border: none; 
+  padding: 10px 20px; 
+  font-size: 1rem; 
+  cursor: pointer; 
+  border-radius: 5px; 
+  transition: background-color 0.3s ease;
 }
+
+.BotonComenzar > button:hover {
+  animation: breathing 1.5s infinite alternate ease-in-out;
+  background-color: rgb(42, 138, 194); 
+  color: white; 
+}
+
+@keyframes breathing {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+/* FIN DISEÑO BOTON COMENZAR  */
+
+
 
 
 
 @keyframes moveClouds {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .clouds {
@@ -174,15 +230,29 @@ input[type="text"]:focus {
 }
 
 @keyframes waveFlag {
-  0%, 100% { transform: rotate(0deg); }
-  50% { transform: rotate(5deg); }
+
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(5deg);
+  }
 }
 
 .Titulo {
   color: #2282e9;
-  text-shadow: 2px 2px 4px #000;
   font-family: 'Whocats', cursive;
   font-size: 3rem;
+}
+
+.neon-text {
+  text-shadow: 2px 2px 4px #000,
+    0 0 10px #116e4b,
+    0 0 10px #272e35,
+    0 0 10px #729fcf,
+    0 0 10px #4a5c6e;
 }
 
 .clouds-container {
@@ -199,6 +269,11 @@ input[type="text"]:focus {
 }
 
 @keyframes floatClouds {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }

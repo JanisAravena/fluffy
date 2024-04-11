@@ -75,7 +75,10 @@ const Home = () => {
     <div className="main-container">
       <div className="overlay">
         <div className="container">
-          <h1 className="Titulo">Fluffy programando</h1>
+
+          <div class="Titulo">
+              <span class="neon-text"> Programa Con FLuffy !</span>
+          </div>
           <p>{mensaje}</p>
           {etapa === "inicio" && (
             <div className="mt-3">
@@ -86,9 +89,9 @@ const Home = () => {
                 onChange={(e) => setNombreJugador(e.target.value)}
                 placeholder="Escribe tu nombre"
               />
-                <div className='BotonComenzar'>
-                  <Button  onClick={iniciarJuego} className="btncomenzar">Comenzar</Button>
-                  </div>
+              <div className='BotonComenzar'>
+                <Button onClick={iniciarJuego}>Comenzar</Button>
+              </div>
 
 
             </div>
@@ -97,9 +100,9 @@ const Home = () => {
         </div>
       </div>
       <div >
-      <Button onClick={toggleAudio} className="btn-musica">
-        <FontAwesomeIcon icon={isPlaying ? faVolumeUp : faVolumeMute} size="2x" />
-      </Button>
+        <Button onClick={toggleAudio} className="btn-musica">
+          <FontAwesomeIcon icon={isPlaying ? faVolumeUp : faVolumeMute} size="2x" />
+        </Button>
       </div>
     </div>
   );
